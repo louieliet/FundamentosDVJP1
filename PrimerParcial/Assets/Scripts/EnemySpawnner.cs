@@ -31,8 +31,8 @@ public class EnemySpawnner : MonoBehaviour
     }
 
     void spawnEnemy(){
-        float topLimit = transform.position.y + difference ;
-        float bottomLimit = transform.position.y - difference;
+        float topLimit = -1.2f;
+        float bottomLimit = -2.44f;
         float randomHeight = Random.Range(bottomLimit,topLimit);
         bool randomSide = (Random.Range(0,2) == 0);
         int enemyIndex = Random.Range(0,enemyPrefabs.Length);

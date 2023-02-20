@@ -6,15 +6,19 @@ public class PlayerMovent : MonoBehaviour
 {
     private float horizontalMove;
     private Rigidbody2D player;
+    private BoxCollider2D playercollider;
     private Animator animator;
     public float speed;
     public float jumpForce;
     private bool Grounded;
     public float distanceGround;
     private bool onFloor;
+
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        playercollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
 
     }
@@ -27,7 +31,7 @@ public class PlayerMovent : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal");
         animator.SetBool("Running", horizontalMove != 0.0f);
         animator.SetBool("Ground", Grounded);
-
+        
         //Rotatio
         if (horizontalMove < 0.0f) transform.localScale = new Vector3(-5.0f,5.0f,5.0f);
         else if (horizontalMove > 0.0f) transform.localScale = new Vector3(5.0f,5.0f,5.0f);
@@ -46,16 +50,58 @@ public class PlayerMovent : MonoBehaviour
             Jump();
         }
         
-        //Crouching
+        //Falling
         if(Input.GetKeyDown(KeyCode.S)){
-            Crouch();
+            Fall();
+        }
+
+        //Crouching
+        if(Input.GetKeyDown(KeyCode.S) && onFloor){
+            playercollider.size = new Vector2(playercollider.size.x, 0.11f);
+            animator.SetBool("Crouch",true);
+        }
+        if(Input.GetKeyUp(KeyCode.S) && onFloor){
+            playercollider.size = new Vector2(playercollider.size.x, 0.22f);
+            animator.SetBool("Crouch",false);
+        
+        }
+
+
+
+    }
+
+    /// <summary>
+    /// Sent when an incoming collider makes contact with this object's
+    /// collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Enemy"){
+            Destroy(gameObject);
+        }
+
+        if(other.gameObject.tag == "Floor"){
+            onFloor = true;
+        }
+    }
+
+    /// <summary>
+    /// Sent when a collider on another object stops touching this
+    /// object's collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Floor"){
+            onFloor = false;
         }
     }
 
     private void Jump(){
         player.velocity = Vector2.up * jumpForce;
     }
-    private void Crouch(){
+    private void Fall(){
         player.velocity = -Vector2.up * jumpForce;
     }
 }
