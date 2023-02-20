@@ -101,11 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpForce: 6.5
+  jumpForce: 7
   distanceGround: 0.9
-  Crouching: {fileID: 21300000, guid: 448d57c5e4c694686badaba281a6adff, type: 3}
-  Idling: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
-  spriteRenderer: {fileID: 0}
 --- !u!50 &2442830680995880798
 Rigidbody2D:
   serializedVersion: 4
@@ -124,7 +121,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!95 &2442830680995880796

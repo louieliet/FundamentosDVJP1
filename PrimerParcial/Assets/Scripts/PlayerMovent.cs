@@ -13,6 +13,7 @@ public class PlayerMovent : MonoBehaviour
     private bool Grounded;
     public float distanceGround;
     private bool onFloor;
+    private LogicScript logic;
 
 
     void Start()
@@ -20,18 +21,19 @@ public class PlayerMovent : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         playercollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        logic = GameObject.Find("GameManager").GetComponent<LogicScript>();
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //Input
-        horizontalMove = Input.GetAxisRaw("Horizontal");
         animator.SetBool("Running", horizontalMove != 0.0f);
         animator.SetBool("Ground", Grounded);
         
+        //Input
+        horizontalMove = Input.GetAxisRaw("Horizontal");
         //Rotatio
         if (horizontalMove < 0.0f) transform.localScale = new Vector3(-5.0f,5.0f,5.0f);
         else if (horizontalMove > 0.0f) transform.localScale = new Vector3(5.0f,5.0f,5.0f);
@@ -79,6 +81,7 @@ public class PlayerMovent : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy"){
             Destroy(gameObject);
+            logic.Die();
         }
 
         if(other.gameObject.tag == "Floor"){
