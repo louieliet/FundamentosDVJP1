@@ -514,7 +514,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1434785827073238129, guid: b7f685cc92fccfa4d97593f536d14f98, type: 3}
   enemyIndex: 0
-  spawnRate: 10000000
+  spawnRate: 4
   difference: 2
 --- !u!4 &725861215
 Transform:
