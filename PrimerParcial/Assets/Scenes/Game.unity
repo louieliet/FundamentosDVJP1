@@ -1103,7 +1103,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1434785827073238129, guid: b7f685cc92fccfa4d97593f536d14f98, type: 3}
   enemyIndex: 0
-  spawnRate: 1
+  spawnRate: 0.5
   difference: 1
 --- !u!4 &725861215
 Transform:
@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7378e092178864ebd93e7ca00d0faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 30
+  startingTime: 20
   countdown: {fileID: 1803841878}
   winMenu: {fileID: 1019274825}
   gameoverMenu: {fileID: 158600341}
@@ -1592,6 +1592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Player '
       objectReference: {fileID: 0}
+    - target: {fileID: 5254549893261801103, guid: 51516a72156ff9b4c89045126266a650, type: 3}
+      propertyPath: limit
+      value: 
+      objectReference: {fileID: 886259585}
     - target: {fileID: 5254549893261801103, guid: 51516a72156ff9b4c89045126266a650, type: 3}
       propertyPath: speed
       value: 7

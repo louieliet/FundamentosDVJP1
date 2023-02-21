@@ -72,12 +72,13 @@ public class PlayerController : MonoBehaviour
 
         if(winMenu.activeInHierarchy == true){
             speed = 0.0f;
+            horizontalMove = 0.0f;
         }
 
         if(gameoverMenu.activeInHierarchy == true){
-            Destroy(gameObject);
             speed = 0.0f;
-            animator.enabled = false;
+            animator.SetBool("isDead",true);
+            playercollider.isTrigger = true;
         }
         
 
@@ -86,14 +87,19 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy"){
-            animator.SetBool("isDead",true);
             logic.Die();
         }
 
         if(other.gameObject.tag == "Floor"){
             onFloor = true;
         }
+
+        if(other.gameObject.tag == "Limit"){
+            logic.Die();
+        }
+        
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if(other.gameObject.tag == "Floor"){
