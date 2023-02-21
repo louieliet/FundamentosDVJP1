@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Cinemachine;
+
 public class LogicScript : MonoBehaviour
 {
 
@@ -14,6 +16,7 @@ public class LogicScript : MonoBehaviour
     public GameObject winMenu;
     public GameObject gameoverMenu;
     public GameObject Spawnner;
+    public GameObject playercamera;
 
     private void Start()
     {
@@ -39,6 +42,8 @@ public class LogicScript : MonoBehaviour
         if(winMenu.activeInHierarchy == false){
             gameoverMenu.SetActive(true);
         }
+        
+        playercamera.SetActive(false);
 
     }
 

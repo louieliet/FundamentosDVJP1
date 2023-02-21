@@ -1482,6 +1482,7 @@ MonoBehaviour:
   winMenu: {fileID: 1019274825}
   gameoverMenu: {fileID: 158600341}
   Spawnner: {fileID: 725861213}
+  playercamera: {fileID: 1616191749}
 --- !u!4 &958863210
 Transform:
   m_ObjectHideFlags: 0
