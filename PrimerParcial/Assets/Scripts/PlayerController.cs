@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
-public class PlayerMovent : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private float horizontalMove;
     private Rigidbody2D player;
@@ -14,15 +16,15 @@ public class PlayerMovent : MonoBehaviour
     public float distanceGround;
     private bool onFloor;
     private LogicScript logic;
-
-
+    public GameObject winMenu;
+    public GameObject gameoverMenu;
+    
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         playercollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         logic = GameObject.Find("GameManager").GetComponent<LogicScript>();
-
 
     }
 
@@ -68,19 +70,23 @@ public class PlayerMovent : MonoBehaviour
         
         }
 
+        if(winMenu.activeInHierarchy == true){
+            speed = 0.0f;
+        }
 
+        if(gameoverMenu.activeInHierarchy == true){
+            Destroy(gameObject);
+            speed = 0.0f;
+            animator.enabled = false;
+        }
+        
 
     }
 
-    /// <summary>
-    /// Sent when an incoming collider makes contact with this object's
-    /// collider (2D physics only).
-    /// </summary>
-    /// <param name="other">The Collision2D data associated with this collision.</param>
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy"){
-            Destroy(gameObject);
+            animator.SetBool("isDead",true);
             logic.Die();
         }
 
@@ -88,12 +94,6 @@ public class PlayerMovent : MonoBehaviour
             onFloor = true;
         }
     }
-
-    /// <summary>
-    /// Sent when a collider on another object stops touching this
-    /// object's collider (2D physics only).
-    /// </summary>
-    /// <param name="other">The Collision2D data associated with this collision.</param>
     private void OnCollisionExit2D(Collision2D other)
     {
         if(other.gameObject.tag == "Floor"){
@@ -107,4 +107,5 @@ public class PlayerMovent : MonoBehaviour
     private void Fall(){
         player.velocity = -Vector2.up * jumpForce;
     }
+
 }

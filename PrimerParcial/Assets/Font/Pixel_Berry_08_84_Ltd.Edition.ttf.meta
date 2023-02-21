@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a54335ce96dad184aaa9c2b59b5f5c2a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Pixel Berry 08/84 Ltd.Edition
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7d9ad257c7f33884a941b2685d7ad0fd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
