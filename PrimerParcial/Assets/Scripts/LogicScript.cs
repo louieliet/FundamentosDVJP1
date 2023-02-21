@@ -42,8 +42,10 @@ public class LogicScript : MonoBehaviour
         if(winMenu.activeInHierarchy == false){
             gameoverMenu.SetActive(true);
         }
-        
+
         playercamera.SetActive(false);
+
+        Destroy(countdown);
 
     }
 
